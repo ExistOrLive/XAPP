@@ -67,7 +67,7 @@ typedef NS_ENUM(NSInteger, NetMessage) {
  @prama key 秘钥
  @return 将解析的结果封装在Dictionary中
  **/
-+ (NSDictionary *) parseMessgae : (NSString *) message withKey:(NSString *) key;
++ (NSMutableDictionary *) parseMessgae : (NSString *) message withKey:(NSString *) key;
 
 /**
  将想要传递的信息加密，封装成可以传递的字符串信息

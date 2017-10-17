@@ -43,7 +43,7 @@
 @property (strong) NSFileHandle * fileHandle;
 
 
--(instancetype) initWithFilePath: (NSString *) filePath;
+
 
 /**
  @description 检查文件一致性，即检查file实例指向的文件的md5值与file.md5是否一致

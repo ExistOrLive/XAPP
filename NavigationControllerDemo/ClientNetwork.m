@@ -64,7 +64,7 @@
     
     NetMessage netMessage = NetMessageConnection_Request;
     
-    [dic setObject:[NSString stringWithFormat:@"%ld",netMessage] forKey:@"NetMessage"];
+    [dic setObject:[NSString stringWithFormat:@"%d",netMessage] forKey:@"NetMessage"];
     
     NSString * requestStr = [Network packageMessage:dic withKey:self.key];
     
@@ -171,7 +171,7 @@
             {
                 NSMutableDictionary * responseDic = [[NSMutableDictionary alloc] init];
                 
-                [responseDic setValue: [NSString stringWithFormat:@"%ld",NetMessageConnection_HasDownload] forKey:@"NetMessage"];
+                [responseDic setValue: [NSString stringWithFormat:@"%d",NetMessageConnection_HasDownload] forKey:@"NetMessage"];
                 
                 NSString * str = [Network packageMessage:responseDic withKey:self.key];
                 
@@ -273,7 +273,7 @@
     
     // 2. 响应 文件信息 ，将文件下载的开始地址发送给服务器
     NSMutableDictionary * responseDic = [[NSMutableDictionary alloc] init];
-    [responseDic setValue: [NSString stringWithFormat:@"%ld",NetMessageConnection_OK] forKey:@"NetMessage"];
+    [responseDic setValue: [NSString stringWithFormat:@"%d",NetMessageConnection_OK] forKey:@"NetMessage"];
     [responseDic setValue: [NSString stringWithFormat:@"%lld",file.currentLength] forKey:@"currentLength"];
     NSString * str = [Network packageMessage:responseDic withKey:self.key];
     

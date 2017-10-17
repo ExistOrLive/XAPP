@@ -171,7 +171,7 @@
 }
 
 
-+(NSDictionary *) parseMessgae:(NSString *)message withKey:(NSString *)key
++(NSMutableDictionary *) parseMessgae:(NSString *)message withKey:(NSString *)key
 {
     NSLog(@"[%s [%d]] : start......", __func__,__LINE__);
     

@@ -21,7 +21,7 @@ File * file;                                   //全局变量 ，分享文件的
 
 NSMutableArray<File *> * downloadArray;        // 全局变量 ，用于保存下载的文件路径
 
-UINavigationController * rootController;       // 全局变量 ，用于维持应用的容器导航视图控制器
+UITabBarController * rootController;       // 全局变量 ，用于维持应用的容器导航视图控制器
 
 NSTimer * networkTimer;                        // 计时器 检查网络
 
@@ -36,7 +36,7 @@ NSMutableArray * clientNetworkArray;           // 保存客户端连接的数组
 
 @implementation AppDelegate
 
-
+#pragma mark AppDelagate lifCycle
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
@@ -122,13 +122,8 @@ NSMutableArray * clientNetworkArray;           // 保存客户端连接的数组
       
     }
     
-    // 设置 UINavigationController 为 UIWindow 的根控制器
-    MenuViewController * root = [[MenuViewController alloc]init];
-    rootController = [[UINavigationController alloc]initWithRootViewController:root];
-    self.window = [[UIWindow alloc]initWithFrame: [[UIScreen mainScreen] bounds]] ;
-    self.window.rootViewController = rootController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    // 设置 UITabBarViewController 为 UIWindow 的根控制器
+    [self createTabBarViewController];
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
@@ -225,150 +220,134 @@ NSMutableArray * clientNetworkArray;           // 保存客户端连接的数组
     
 }
 
-- (void) handleServerClose
-{
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        
-//        UIViewController * controller = [rootController topViewController];
-//        
-//        UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"the server has closed with exception" message:@"please restart the server" preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        UIAlertAction * yesAction = [UIAlertAction actionWithTitle:@"restart" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-//                                     {
-//                                         //重新建立服务器
-//                                         //创建服务器端，并监听端口
-//                                         connectionServer = [[ConnectionServer alloc] initWithPort:port];
-//                                         
-//                                         if(!connectionServer)
-//                                         {
-//                                             NSLog(@"[%@  acceptAndHandleConnection] : connectionServer build failed!!!!!!",self.class);
-//                                         }
-//                                         else
-//                                         {
-//                                             NSLog(@"[%@ acceptAndHandleConnection ] : connectionServer build success!!!!!!",self.class);
-//                                             ip = [connectionServer ip];
-//                                             port = [connectionServer port];
-//                                             NSLog(@"[%@ acceptAndHandleConnection ] : %@ : %d",[self class],ip,port);
-//                                            
-//                                             [connectionServer setDelegate:self];
-//                                             [connectionServer acceptAndHandleConnection];
-//                                             
-//                                             if([controller isKindOfClass:[QRCodeViewController class]])
-//                                             {
-//                                                 [rootController popToRootViewControllerAnimated:YES];
-//                                             }
-//                                         }
-//                                         
-//                                         
-//                                     }];
-//        
-//        
-//        [alertController addAction:yesAction];
-//        [controller presentViewController:alertController animated:YES completion:nil];
-//        
-//        
-//    });
-    
-    
-    
-}
-
+#pragma  mark  NSTimeInterval 的执行方法
 -(void) timeIntervalHandle
 {
   //  NSLog(@"[%s [%d] : start......",__func__,__LINE__);
     
-    NSString * currentIp = [Network getIPAddress:YES];
-    
-   // NSLog(@"[%s [%d] : currentIp = %@",__func__,__LINE__,currentIp);
-    
-    if([currentIp isEqualToString:@"0.0.0.0"])
-    {
-        // 断网后第一次检查网络，如果还没有连接网络，则发出警告
-        if(nil == ip)
-        {
-            ip = @"0.0.0.0";
-            UIViewController * controller = [rootController topViewController];
-            
-            if([controller isKindOfClass:[MenuViewController class]])
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"the iphone can not connect network".localizedString message:@"please check the network".localizedString preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction * yesAction = [UIAlertAction actionWithTitle:@"OK,I Know".localizedString style:UIAlertActionStyleDefault handler:nil];
-                    [alertController addAction:yesAction];
-                    [controller presentViewController:alertController animated:YES completion:nil];
-                });
-               
-            }
-            else
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"the iphone can not connect network,we will goback to the main view" message:@"please check the network".localizedString preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction * yesAction = [UIAlertAction actionWithTitle:@"OK,I Know".localizedString style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-                        [rootController popToRootViewControllerAnimated:YES];
-                    }];
-                    [alertController addAction:yesAction];
-                    [controller presentViewController:alertController animated:YES completion:nil];
-
-                    
-                });
-            }
-            
-        }
-        // 一直没有网络连接
-        else if([ip isEqualToString:@"0.0.0.0"])
-        {
-            
-        }
-        else
-        {
-            // 从连接到网络到没有连接网络
-            if(connectionServer)
-            {
-                [connectionServer closeAll];
-                connectionServer = nil;
-                ip = nil;
-                NSLog(@"[%s [%d] : the network disconnect",__func__,__LINE__);
-            }
-        }
-        
-    }
-    else
-    {
-        // 网络切换
-        if(![currentIp isEqualToString:ip])
-        {
-            NSLog(@"[%s [%d] : the network has changed",__func__,__LINE__);
-            if(connectionServer)
-            {
-                [connectionServer closeAll];
-                connectionServer = nil;
-                ip = nil;
-            }
-            
-            connectionServer = [[ConnectionServer alloc] initWithPort:port];
-            
-            if(!connectionServer)
-            {
-                NSLog(@"[%s [%d] : connectionServer build failed!!!!!!",__func__,__LINE__);
-            }
-            else
-            {
-                NSLog(@"[%s [%d]: connectionServer build success!!!!!!",__func__,__LINE__);
-                ip = [connectionServer ip];
-                port = [connectionServer port];
-                NSLog(@"[%s [%d]: %@ : %d",__func__,__LINE__,ip,port);
-                
-                [connectionServer setDelegate:self];
-                [connectionServer acceptAndHandleConnection];
-            }
-
-            
-        }
-    }
+//    NSString * currentIp = [Network getIPAddress:YES];
+//
+//   // NSLog(@"[%s [%d] : currentIp = %@",__func__,__LINE__,currentIp);
+//
+//    if([currentIp isEqualToString:@"0.0.0.0"])
+//    {
+//        // 断网后第一次检查网络，如果还没有连接网络，则发出警告
+//        if(nil == ip)
+//        {
+//            ip = @"0.0.0.0";
+//            UIViewController * controller = [rootController topViewController];
+//
+//            if([controller isKindOfClass:[MenuViewController class]])
+//            {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//
+//                    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"the iphone can not connect network".localizedString message:@"please check the network".localizedString preferredStyle:UIAlertControllerStyleAlert];
+//                    UIAlertAction * yesAction = [UIAlertAction actionWithTitle:@"OK,I Know".localizedString style:UIAlertActionStyleDefault handler:nil];
+//                    [alertController addAction:yesAction];
+//                    [controller presentViewController:alertController animated:YES completion:nil];
+//                });
+//
+//            }
+//            else
+//            {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//
+//                    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"the iphone can not connect network,we will goback to the main view" message:@"please check the network".localizedString preferredStyle:UIAlertControllerStyleAlert];
+//                    UIAlertAction * yesAction = [UIAlertAction actionWithTitle:@"OK,I Know".localizedString style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+//                        [rootController popToRootViewControllerAnimated:YES];
+//                    }];
+//                    [alertController addAction:yesAction];
+//                    [controller presentViewController:alertController animated:YES completion:nil];
+//
+//
+//                });
+//            }
+//
+//        }
+//        // 一直没有网络连接
+//        else if([ip isEqualToString:@"0.0.0.0"])
+//        {
+//
+//        }
+//        else
+//        {
+//            // 从连接到网络到没有连接网络
+//            if(connectionServer)
+//            {
+//                [connectionServer closeAll];
+//                connectionServer = nil;
+//                ip = nil;
+//                NSLog(@"[%s [%d] : the network disconnect",__func__,__LINE__);
+//            }
+//        }
+//
+//    }
+//    else
+//    {
+//        // 网络切换
+//        if(![currentIp isEqualToString:ip])
+//        {
+//            NSLog(@"[%s [%d] : the network has changed",__func__,__LINE__);
+//            if(connectionServer)
+//            {
+//                [connectionServer closeAll];
+//                connectionServer = nil;
+//                ip = nil;
+//            }
+//
+//            connectionServer = [[ConnectionServer alloc] initWithPort:port];
+//
+//            if(!connectionServer)
+//            {
+//                NSLog(@"[%s [%d] : connectionServer build failed!!!!!!",__func__,__LINE__);
+//            }
+//            else
+//            {
+//                NSLog(@"[%s [%d]: connectionServer build success!!!!!!",__func__,__LINE__);
+//                ip = [connectionServer ip];
+//                port = [connectionServer port];
+//                NSLog(@"[%s [%d]: %@ : %d",__func__,__LINE__,ip,port);
+//
+//                [connectionServer setDelegate:self];
+//                [connectionServer acceptAndHandleConnection];
+//            }
+//
+//
+//        }
+//    }
     
   //   NSLog(@"[%s [%d] : end......",__func__,__LINE__);
+}
+
+
+#pragma mark other method
+/**
+ * @description 创建UITabBarController作为window的rootViewController,同时添加子视图控制器
+ **/
+- (void) createTabBarViewController
+{
+    rootController = [[UITabBarController alloc] init];
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    frame = CGRectMake(0, CGRectGetMaxY(frame)-49, CGRectGetMaxX(frame), 200.0) ;
+    rootController.tabBar.frame = frame;
+    
+    MenuViewController * menuViewController = [[MenuViewController alloc]init];
+    UINavigationController * homeViewController = [[UINavigationController alloc]initWithRootViewController:menuViewController];
+    homeViewController.tabBarItem.image = [UIImage imageNamed:@"home.png"];
+    homeViewController.tabBarItem.title = @"home".localizedString;
+    
+    UIViewController * settingViewController = [[UIViewController alloc]init];
+    settingViewController.tabBarItem.image = [UIImage imageNamed:@"setting.png"];
+    settingViewController.tabBarItem.title = @"setting".localizedString;
+    
+    [rootController addChildViewController:homeViewController];
+    [rootController addChildViewController:settingViewController];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = rootController;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
 }
 
 

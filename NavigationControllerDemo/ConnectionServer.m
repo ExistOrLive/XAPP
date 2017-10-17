@@ -142,7 +142,7 @@
             
             NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
             
-            [dic setValue: [NSString stringWithFormat:@"%ld",netMessage] forKey:@"NetMessage"];
+            [dic setValue: [NSString stringWithFormat:@"%d",netMessage] forKey:@"NetMessage"];
             
             NSString * str = [Network packageMessage:dic withKey:self.key];
             
@@ -169,7 +169,7 @@
             
             NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
             
-            [dic setValue: [NSString stringWithFormat:@"%ld",netMessage] forKey:@"NetMessage"];
+            [dic setValue: [NSString stringWithFormat:@"%d",netMessage] forKey:@"NetMessage"];
             
             NSString * str = [Network packageMessage:dic withKey:self.key];
             
@@ -195,7 +195,7 @@
             
             NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
             
-            [dic setValue: [NSString stringWithFormat:@"%ld",netMessage] forKey:@"NetMessage"];
+            [dic setValue: [NSString stringWithFormat:@"%d",netMessage] forKey:@"NetMessage"];
             
             NSString * str = [Network packageMessage:dic withKey:self.key];
             

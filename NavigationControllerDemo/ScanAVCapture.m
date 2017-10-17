@@ -96,10 +96,6 @@
     [output setMetadataObjectsDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
     ///设置 扫描到的type
     [output setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode,AVMetadataObjectTypeEAN13Code,AVMetadataObjectTypeEAN8Code,AVMetadataObjectTypeCode93Code,AVMetadataObjectTypeCode128Code,AVMetadataObjectTypeUPCECode]];
-    ///原点的X与Y互换了
-    UIScreen * screen = [UIScreen mainScreen];
-    CGFloat ScreenWidth = [screen bounds].size.width;
-    CGFloat ScreenHeight = [screen bounds].size.height;
    // output.rectOfInterest = CGRectMake(x, y, width, height);///设置扫描范围
     ///设置展示的layer
     AVCaptureVideoPreviewLayer *layer = [[AVCaptureVideoPreviewLayer alloc]initWithSession:session];

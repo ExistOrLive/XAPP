@@ -42,8 +42,6 @@ extern NSMutableArray * downloadArray;
 
 - (void) acceptFile;
 
-- (int) beforeTransmission;
-
 - (bool) close;
 
 

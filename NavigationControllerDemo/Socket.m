@@ -75,7 +75,7 @@
         NSLog(@"errno = %d",errno);
     }
     
-    NSLog(@"[%@ read: withlength %ld]",[self class],resultLength);
+    NSLog(@"[%@ read: withlength %d]",[self class],resultLength);
 
     return resultLength;
 }

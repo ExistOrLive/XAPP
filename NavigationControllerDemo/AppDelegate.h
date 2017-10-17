@@ -16,7 +16,7 @@
 #import <CoreTelephony/CTCellularData.h>
 #import "NSString+localized.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,ConnectionServerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
