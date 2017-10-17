@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9369f9a7-0c78-274b-a158-92703524c0ea++7143",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "9369f9a7-0c78-274b-a158-92703524c0ea++7143" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "9369f9a7-0c78-274b-a158-92703524c0ea++7143" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E8D5988C-989A-467D-A3E5-44698124A38F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "9369f9a7-0c78-274b-a158-92703524c0ea++7143" : "zhumeng\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "NavigationControllerDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "testProject\/NavigationControllerDemo\/NavigationControllerDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/10.129.39.11\/svn\/Ver_SoftDACLT",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9369f9a7-0c78-274b-a158-92703524c0ea++7143"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+/* 
+  localizable.strings
+  NavigationControllerDemo
+
+  Created by 朱猛 on 2017/10/16.
+  Copyright © 2017年 zhumeng. All rights reserved.
+*/
+"XAPP" = "XAPP"; 
+"share" = "分享";
+"download" = "下载";
+"local file" = "本地文件";
+"select" = "选择";
+"reselect" = "重选";
+"album" = "相册";
+"connect" = "连接";
+"verificated" = "已验证";
+"Align the QR Code within the frame to scan" = "请将二维码置于扫描框内";
+"file list" = "文件列表";
+"the iphone can not connect network" = "本机没有网络连接";
+"please check the network" = "请检查网络";
+"OK,I Know" = "我知道了";
+"the iphone can not connect network,we will goback to the main view" = "本机没有网络连接,即将返回主界面";
+"Edit" = "编辑";
+"unverificated" = "未验证";
+"Done" = "完成";
