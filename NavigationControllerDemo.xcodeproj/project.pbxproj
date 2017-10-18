@@ -47,6 +47,7 @@
 		0AECF5741F5E9B93005F3E3F /* ScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AECF5731F5E9B93005F3E3F /* ScanView.m */; };
 		0AECF57F1F5EA97A005F3E3F /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AECF57D1F5EA97A005F3E3F /* QRCodeViewController.m */; };
 		0AECF5801F5EA97A005F3E3F /* QRCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AECF57E1F5EA97A005F3E3F /* QRCodeViewController.xib */; };
+		74195F461F97A29A006B588C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74195F451F97A29A006B588C /* RootViewController.m */; };
 		744345711F9508AB0057C7F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 744345731F9508AB0057C7F1 /* Localizable.strings */; };
 		7443457A1F950DC00057C7F1 /* NSString+localized.m in Sources */ = {isa = PBXBuildFile; fileRef = 744345791F950DC00057C7F1 /* NSString+localized.m */; };
 /* End PBXBuildFile section */
@@ -117,6 +118,8 @@
 		0AECF57C1F5EA97A005F3E3F /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		0AECF57D1F5EA97A005F3E3F /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
 		0AECF57E1F5EA97A005F3E3F /* QRCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCodeViewController.xib; sourceTree = "<group>"; };
+		74195F441F97A29A006B588C /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		74195F451F97A29A006B588C /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		7443456D1F9508380057C7F1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		7443456E1F9508380057C7F1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		744345721F9508AB0057C7F1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 				0A014E251F5E3F8500FDF860 /* FileShowViewController.h */,
 				0A014E261F5E3F8500FDF860 /* FileShowViewController.m */,
 				0A014E271F5E3F8500FDF860 /* FileShowViewController.xib */,
+				74195F441F97A29A006B588C /* RootViewController.h */,
+				74195F451F97A29A006B588C /* RootViewController.m */,
 			);
 			name = viewcontroller;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 				0AA4EF341F610A88002AC36B /* TransmissionServer.m in Sources */,
 				0AC8EE0E1F6147DE003091A4 /* File.m in Sources */,
 				7443457A1F950DC00057C7F1 /* NSString+localized.m in Sources */,
+				74195F461F97A29A006B588C /* RootViewController.m in Sources */,
 				0ADE6F3D1F74BBFD008150EB /* AES.m in Sources */,
 				0A1F103D1F60F0F500D80AC8 /* ServerSocket.m in Sources */,
 				0A94E8141F56937C007F9460 /* ClientNetwork.m in Sources */,

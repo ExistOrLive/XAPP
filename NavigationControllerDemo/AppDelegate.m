@@ -21,7 +21,7 @@ File * file;                                   //全局变量 ，分享文件的
 
 NSMutableArray<File *> * downloadArray;        // 全局变量 ，用于保存下载的文件路径
 
-UITabBarController * rootController;       // 全局变量 ，用于维持应用的容器导航视图控制器
+RootViewController * rootController;       // 全局变量 ，用于维持应用的容器导航视图控制器
 
 NSTimer * networkTimer;                        // 计时器 检查网络
 
@@ -326,10 +326,7 @@ NSMutableArray * clientNetworkArray;           // 保存客户端连接的数组
  **/
 - (void) createTabBarViewController
 {
-    rootController = [[UITabBarController alloc] init];
-    CGRect frame = [[UIScreen mainScreen] bounds];
-    frame = CGRectMake(0, CGRectGetMaxY(frame)-49, CGRectGetMaxX(frame), 200.0) ;
-    rootController.tabBar.frame = frame;
+    rootController = [[RootViewController alloc] init];
     
     MenuViewController * menuViewController = [[MenuViewController alloc]init];
     UINavigationController * homeViewController = [[UINavigationController alloc]initWithRootViewController:menuViewController];
@@ -339,6 +336,7 @@ NSMutableArray * clientNetworkArray;           // 保存客户端连接的数组
     UIViewController * settingViewController = [[UIViewController alloc]init];
     settingViewController.tabBarItem.image = [UIImage imageNamed:@"setting.png"];
     settingViewController.tabBarItem.title = @"setting".localizedString;
+   
     
     [rootController addChildViewController:homeViewController];
     [rootController addChildViewController:settingViewController];

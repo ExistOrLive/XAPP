@@ -15,6 +15,7 @@
 #import <CoreTelephony/CoreTelephonyDefines.h>
 #import <CoreTelephony/CTCellularData.h>
 #import "NSString+localized.h"
+#import "RootViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
